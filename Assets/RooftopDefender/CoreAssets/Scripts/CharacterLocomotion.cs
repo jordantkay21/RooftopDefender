@@ -30,8 +30,8 @@ namespace Snipe.PlayerInputs
             move.x = playerInputs.move.x;
             move.y = playerInputs.move.y;
 
-            animator.SetFloat("InputX", move.x);
-            animator.SetFloat("InputY", move.y);
+            animator.SetFloat("InputX", move.x, 0.05f, Time.deltaTime);
+            animator.SetFloat("InputY", move.y, 0.05f, Time.deltaTime);
         }                                                  
     }
 }
