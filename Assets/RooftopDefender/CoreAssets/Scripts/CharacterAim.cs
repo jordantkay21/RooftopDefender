@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterAim : MonoBehaviour
 {   
+    [Tooltip("How fast the character rotates")]
     [SerializeField]
     private float _turnSpeed = 15;
     [SerializeField]
@@ -18,6 +19,9 @@ public class CharacterAim : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    /// <summary>
+    /// Smoothly rotates Character to match the rotation of the Main Camera [FreeLook Virtual Camera]
+    /// </summary>
     private void FixedUpdate()
     {
         float yawCamera = _mainCamera.transform.rotation.eulerAngles.y;
