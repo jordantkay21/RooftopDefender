@@ -7,14 +7,21 @@ namespace KayosGames.RooftopDefender.Weapon
 {
     public class WeaponPickup : MonoBehaviour
     {
-        public RaycastWeapon weaponPrefab;
+        [Tooltip("Weapon to be Picked Up")]
+        public WeaponStats weaponPrefab;
 
+        /// <summary>
+        /// Gains access to the ActiveWeapon script found within the player gameObject. 
+        /// If ActiveWeapon Component is found, instantiate a new weapon.
+        /// Pushes the newly instantiated weapon and its local position to activeWeapon.Equip.
+        /// </summary>
+        /// <param name="other"></param>
         private void OnTriggerEnter(Collider other)
         {
             ActiveWeapon activeWeapon = other.gameObject.GetComponent<ActiveWeapon>();
             if (activeWeapon)
             {
-                RaycastWeapon newWeapon = Instantiate(weaponPrefab);
+                WeaponStats newWeapon = Instantiate(weaponPrefab);
                 activeWeapon.Equip(newWeapon, newWeapon.weaponLocalPosition);
             }
         }

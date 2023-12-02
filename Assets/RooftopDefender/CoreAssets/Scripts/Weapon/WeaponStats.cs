@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace KayosGames.RooftopDefender.Weapon
 {
-    public class RaycastWeapon : MonoBehaviour
+    public class WeaponStats : MonoBehaviour
     {
         [Header("Bullet Effects")]
         public ParticleSystem[] muzzleFlash;

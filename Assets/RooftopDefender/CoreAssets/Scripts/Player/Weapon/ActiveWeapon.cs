@@ -8,21 +8,24 @@ namespace KayosGames.RooftopDefender.Player.Weapon
 {
     public class ActiveWeapon : MonoBehaviour
     {
-        public Transform crosshairTarget;
-        public UnityEngine.Animations.Rigging.Rig handIk;
-
+        [Header("Weapon Placement")]
         public Transform weaponParent;
         public Transform weaponLeftGrip;
         public Transform weaponRightGrip;
-        
         [SerializeField]
-        private RaycastWeapon _weapon;
+        private Vector3 _weaponPosition;
+
+        [Header("Components")]
+        public UnityEngine.Animations.Rigging.Rig handIk;
+        [SerializeField]
+        private WeaponStats _weapon;
         [SerializeField]
         private Animator _anim;
         [SerializeField]
         private AnimatorOverrideController _animOverride;
-        [SerializeField]
-        private Vector3 _weaponPosition;
+
+        [Header("Misc.")]
+        public Transform crosshairTarget;
 
         // Start is called before the first frame update
         void Start()
@@ -30,7 +33,7 @@ namespace KayosGames.RooftopDefender.Player.Weapon
             _anim = GetComponent<Animator>();
             _animOverride = _anim.runtimeAnimatorController as AnimatorOverrideController;
 
-            RaycastWeapon existingWeapon = GetComponentInChildren<RaycastWeapon>();
+            WeaponStats existingWeapon = GetComponentInChildren<WeaponStats>();
             if (existingWeapon)
                 Equip(existingWeapon, existingWeapon.weaponLocalPosition);
             else
@@ -52,7 +55,7 @@ namespace KayosGames.RooftopDefender.Player.Weapon
         }
         #endregion
 
-        public void Equip(RaycastWeapon newWeapon, Vector3 position)
+        public void Equip(WeaponStats newWeapon, Vector3 position)
         {
 
              
