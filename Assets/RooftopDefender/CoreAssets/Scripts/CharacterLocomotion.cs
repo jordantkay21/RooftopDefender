@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-namespace Snipe.PlayerInputs
+namespace KayosGames.RooftopDefender.Player
 {
     public class CharacterLocomotion : MonoBehaviour
     {
@@ -68,14 +67,15 @@ namespace Snipe.PlayerInputs
 
         #endregion
 
-        #region Unity Events
-        private void OnMovement(InputValue value)
+        #region Input Events
+        public void MovementEvent(Vector2 move)
         {
-            _move.x = value.Get<Vector2>().x;
-            _move.y = value.Get<Vector2>().y;
+            _move.x = move.x;
+            _move.y = move.y;
         }
-        private void OnJump()
+        public void JumpEvent()
         {
+            Debug.Log("Jump event called from LocoMotion");
             Jump();
         }
 
