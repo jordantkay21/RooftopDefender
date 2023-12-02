@@ -17,6 +17,10 @@ namespace KayosGames.RooftopDefender.Weapon
         [Tooltip("End of bullet Raycast | CrosshairTarget GameObject")]
         public Transform bulletRaycastDestination;
 
+        [Header("Components")]
+        public AnimationClip weaponAnimation;
+        public Vector3 weaponLocalPosition;
+
         
         Ray _bulletRay;
         RaycastHit _bulletHitInfo;

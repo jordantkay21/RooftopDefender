@@ -2,22 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using KayosGames.RooftopDefender.Player.Weapon;
+using KayosGames.RooftopDefender.Player.Movement;
 
-namespace KayosGames.RooftopDefender.Player
+namespace KayosGames.RooftopDefender.Player.Inputs
 {
     public class PlayerInputs : MonoBehaviour
     {
         [SerializeField]
         private CharacterLocomotion characterLocomotion;
         [SerializeField]
-        private CharacterAim characterAim;
+        private ActiveWeapon activeWeapon;
 
         private void Start()
         {
             if (characterLocomotion == null)
                 characterLocomotion = gameObject.GetComponent<CharacterLocomotion>();
-            if (characterAim == null)
-                characterAim = gameObject.GetComponent<CharacterAim>();
+            if (activeWeapon == null)
+                activeWeapon = gameObject.GetComponent<ActiveWeapon>();
         }
         private void OnMovement(InputValue value)
         {
@@ -32,7 +34,7 @@ namespace KayosGames.RooftopDefender.Player
 
         private void OnFire()
         {
-            characterAim.FireEvent();
+            activeWeapon.FireEvent();
         }
     }
 }

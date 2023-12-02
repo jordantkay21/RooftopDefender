@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace KayosGames.RooftopDefender.Player
+namespace KayosGames.RooftopDefender.Player.Movement
 {
     public class CharacterLocomotion : MonoBehaviour
     {

@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using KayosGames.RooftopDefender.Weapon;
 
-namespace KayosGames.RooftopDefender.Player
+namespace KayosGames.RooftopDefender.Player.Movement
 {
     public class CharacterAim : MonoBehaviour
     {
@@ -11,8 +10,7 @@ namespace KayosGames.RooftopDefender.Player
 
         [SerializeField]
         private Camera _mainCamera;
-        [SerializeField]
-        private RaycastWeapon _raycastWeapon;
+
 
         [Header("CUSTOM VARIABLES")]
         [Tooltip("How fast the character rotates")]
@@ -24,8 +22,7 @@ namespace KayosGames.RooftopDefender.Player
         {
             if (_mainCamera == null)
                 _mainCamera = Camera.main;
-            if (_raycastWeapon == null)
-                _raycastWeapon = GetComponentInChildren<RaycastWeapon>();
+
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -42,12 +39,6 @@ namespace KayosGames.RooftopDefender.Player
 
         #endregion
 
-        #region Input Events
-        public void FireEvent()
-        {
-            _raycastWeapon.FireBullet();
-        }
-        #endregion
     }
 
 }
