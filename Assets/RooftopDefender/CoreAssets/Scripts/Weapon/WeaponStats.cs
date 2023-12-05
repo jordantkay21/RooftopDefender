@@ -18,7 +18,7 @@ namespace KayosGames.RooftopDefender.Weapon
         public Transform bulletRaycastDestination;
 
         [Header("Components")]
-        public AnimationClip weaponAnimation;
+        public string weaponName;
         public Vector3 weaponLocalPosition;
 
         

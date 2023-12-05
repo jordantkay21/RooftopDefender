@@ -5281,7 +5281,8 @@ MonoBehaviour:
   tracerEffect: {fileID: 3267068885857856768, guid: bac4360edbe71764e97ff75aa2f6bd86, type: 3}
   bulletRaycastOrigin: {fileID: 3982726945269112536}
   bulletRaycastDestination: {fileID: 0}
-  weaponAnimation: {fileID: 7400000, guid: 0e91f1299a0ac464fb9633af5cdb9d18, type: 2}
+  weaponName: sniper
+  weaponLocalPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &4526381997887953765
 GameObject:
   m_ObjectHideFlags: 0

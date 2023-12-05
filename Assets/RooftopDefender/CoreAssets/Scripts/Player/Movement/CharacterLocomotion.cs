@@ -75,7 +75,6 @@ namespace KayosGames.RooftopDefender.Player.Movement
         }
         public void JumpEvent()
         {
-            Debug.Log("Jump event called from LocoMotion");
             Jump();
         }
 

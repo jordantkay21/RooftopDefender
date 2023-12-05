@@ -221,7 +221,7 @@ MonoBehaviour:
   tracerEffect: {fileID: 3267068885857856768, guid: bac4360edbe71764e97ff75aa2f6bd86, type: 3}
   bulletRaycastOrigin: {fileID: 1159258493581837884}
   bulletRaycastDestination: {fileID: 0}
-  weaponAnimation: {fileID: 7400000, guid: eab3223427408d74eb710fa095b5ded7, type: 2}
+  weaponName: pistol
   weaponLocalPosition: {x: -0.01, y: 0.04, z: 0.45}
 --- !u!1 &3148876678331835069
 GameObject:
@@ -20001,5 +20001,5 @@ MonoBehaviour:
   tracerEffect: {fileID: 0}
   bulletRaycastOrigin: {fileID: 1159258493581837884}
   bulletRaycastDestination: {fileID: 0}
-  weaponAnimation: {fileID: 0}
+  weaponName: 
   weaponLocalPosition: {x: 0, y: 0, z: 0}

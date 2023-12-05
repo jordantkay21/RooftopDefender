@@ -14,15 +14,12 @@ namespace KayosGames.RooftopDefender.Player.Weapon
         public Transform weaponRightGrip;
         [SerializeField]
         private Vector3 _weaponPosition;
+        public Animator rigController;
 
         [Header("Components")]
         public UnityEngine.Animations.Rigging.Rig handIk;
         [SerializeField]
         private WeaponStats _weapon;
-        [SerializeField]
-        private Animator _anim;
-        [SerializeField]
-        private AnimatorOverrideController _animOverride;
 
         [Header("Misc.")]
         public Transform crosshairTarget;
@@ -30,17 +27,10 @@ namespace KayosGames.RooftopDefender.Player.Weapon
         // Start is called before the first frame update
         void Start()
         {
-            _anim = GetComponent<Animator>();
-            _animOverride = _anim.runtimeAnimatorController as AnimatorOverrideController;
-
             WeaponStats existingWeapon = GetComponentInChildren<WeaponStats>();
             if (existingWeapon)
                 Equip(existingWeapon, existingWeapon.weaponLocalPosition);
-            else
-            {
-                handIk.weight = 0.0f;
-                _anim.SetLayerWeight(1, 0.0f);
-            }
+
             
         }
 
@@ -71,26 +61,17 @@ namespace KayosGames.RooftopDefender.Player.Weapon
             _weapon.transform.localPosition = position;
             _weapon.transform.localRotation = Quaternion.identity;
 
-            handIk.weight = 1.0f;
-            _anim.SetLayerWeight(1, 1.0f);
-
-            Invoke(nameof(SetAnimationDelayed), 0.001f);
+            Debug.Log("equip_" + _weapon.weaponName);
+            rigController.Play("equip_" + _weapon.weaponName);
         }
 
-        private void SetAnimationDelayed()
+        public void HolsterWeapon()
         {
-            _animOverride["weapon_anim_empty"] = _weapon.weaponAnimation;
-        }
-
-        [ContextMenu("Save Weapon Pose")]
-        private void SaveWeaponPose()
-        {
-            GameObjectRecorder recorder = new GameObjectRecorder(gameObject);
-            recorder.BindComponentsOfType<Transform>(weaponParent.gameObject, false);
-            recorder.BindComponentsOfType<Transform>(weaponLeftGrip.gameObject, false);
-            recorder.BindComponentsOfType<Transform>(weaponRightGrip.gameObject, false);
-            recorder.TakeSnapshot(0.0f);
-            recorder.SaveToClip(_weapon.weaponAnimation);
+            Debug.Log("HolsterWeapon method called");
+            bool isHolster = rigController.GetBool("holster_weapon");
+            Debug.Log("1. isHolster = " + isHolster.ToString());
+            rigController.SetBool("holster_weapon", !isHolster);
+            Debug.Log("2. isHolster = " + isHolster.ToString());
         }
     }
 }
