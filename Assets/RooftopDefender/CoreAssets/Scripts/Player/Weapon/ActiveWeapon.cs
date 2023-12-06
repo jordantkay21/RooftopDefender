@@ -8,18 +8,24 @@ namespace KayosGames.RooftopDefender.Player.Weapon
 {
     public class ActiveWeapon : MonoBehaviour
     {
+        public enum WeaponSlot
+        {
+            Primary = 0,
+            Secondary = 1
+        }
+
         [Header("Weapon Placement")]
-        public Transform weaponParent;
+        public Transform[] weaponSlots;
         public Transform weaponLeftGrip;
         public Transform weaponRightGrip;
-        [SerializeField]
-        private Vector3 _weaponPosition;
         public Animator rigController;
 
         [Header("Components")]
         public UnityEngine.Animations.Rigging.Rig handIk;
         [SerializeField]
-        private WeaponStats _weapon;
+        private WeaponStats[] _equippedWeapons;
+        [SerializeField]
+        private int _activeWeaponIndex;
 
         [Header("Misc.")]
         public Transform crosshairTarget;
@@ -28,50 +34,119 @@ namespace KayosGames.RooftopDefender.Player.Weapon
         void Start()
         {
             WeaponStats existingWeapon = GetComponentInChildren<WeaponStats>();
-            if (existingWeapon)
-                Equip(existingWeapon, existingWeapon.weaponLocalPosition);
 
-            
+            _equippedWeapons = new WeaponStats[weaponSlots.Length];
         }
 
         #region Input Events
         public void FireEvent()
         {
-            if (_weapon)
+            WeaponStats weapon = GetWeapon(_activeWeaponIndex);
+            if (weapon)
             {
-                _weapon.FireBullet();
+                weapon.FireBullet();
             }
 
         }
         #endregion
 
-        public void Equip(WeaponStats newWeapon, Vector3 position)
+        WeaponStats GetWeapon(int index)
         {
+            if (index < 0 || index >= _equippedWeapons.Length)
+                return null;
 
+            return _equippedWeapons[index];
+        }
+
+        public void Equip(WeaponStats newWeapon)
+        {
+            int weaponSlotIndex = (int)newWeapon.weaponSlot;
+            WeaponStats weapon = GetWeapon(weaponSlotIndex);
              
-            if (_weapon)
-                Destroy(_weapon.gameObject);
+            if (weapon)
+                Destroy(weapon.gameObject);
 
 
-            _weapon = newWeapon;
-            _weaponPosition = position;
-            _weapon.bulletRaycastDestination = crosshairTarget;
+            weapon = newWeapon;
+            weapon.bulletRaycastDestination = crosshairTarget;
+            weapon.transform.SetParent(weaponSlots[weaponSlotIndex], false);
 
-            _weapon.transform.parent = weaponParent;
-            _weapon.transform.localPosition = position;
-            _weapon.transform.localRotation = Quaternion.identity;
+            _equippedWeapons[weaponSlotIndex] = weapon;
 
-            Debug.Log("equip_" + _weapon.weaponName);
-            rigController.Play("equip_" + _weapon.weaponName);
+            SetActiveWeapon(newWeapon.weaponSlot);
         }
 
-        public void HolsterWeapon()
+        public void SetActiveWeapon(WeaponSlot weaponSlot)
         {
-            Debug.Log("HolsterWeapon method called");
-            bool isHolster = rigController.GetBool("holster_weapon");
-            Debug.Log("1. isHolster = " + isHolster.ToString());
-            rigController.SetBool("holster_weapon", !isHolster);
-            Debug.Log("2. isHolster = " + isHolster.ToString());
+            int holsterIndex = _activeWeaponIndex;
+            int activateIndex = (int)weaponSlot;
+            StartCoroutine(SwitchWeaponPickup(holsterIndex, activateIndex));
         }
+
+        #region AnimationControl
+        public void SwitchWeapon()
+        {
+            WeaponStats weapon = GetWeapon(_activeWeaponIndex);
+
+            if (_equippedWeapons[_activeWeaponIndex] != null)
+            {
+                if (weapon.weaponSlot == WeaponSlot.Primary)
+                    SetActiveWeapon(WeaponSlot.Secondary);
+                else if (weapon.weaponSlot == WeaponSlot.Secondary)
+                    SetActiveWeapon(WeaponSlot.Primary);
+                else
+                    return;
+            }
+            else
+                return;
+            // Stop Switch Weapon from switching the _activeWeaponIndex unless there is a weapon to switch too
+            
+        }
+        public void ToggleActiveWeaponHolster()
+        {
+            bool isHolster = rigController.GetBool("holster_weapon");
+
+            if (!isHolster)
+                StartCoroutine(HolsterWeapon(_activeWeaponIndex));
+            else
+                StartCoroutine(ActivateWeapon(_activeWeaponIndex));
+               
+        }
+        IEnumerator SwitchWeaponPickup(int holsterIndex, int activeIndex)
+        {
+            yield return StartCoroutine(HolsterWeapon(holsterIndex));
+            yield return StartCoroutine(ActivateWeapon(activeIndex));
+            _activeWeaponIndex = activeIndex;
+        }
+
+        IEnumerator HolsterWeapon(int index)
+        {
+            WeaponStats weapon = GetWeapon(index);
+            if (weapon)
+            {
+                rigController.SetBool("holster_weapon", true);
+
+                yield return new WaitForSeconds(0.1f);
+                do
+                {
+                    yield return new WaitForEndOfFrame();
+                } while (rigController.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
+            }
+        }
+
+        IEnumerator ActivateWeapon(int index)
+        {
+            WeaponStats weapon = GetWeapon(index);
+            if (weapon)
+            {
+                rigController.SetBool("holster_weapon", false);
+                rigController.Play("equip_" + weapon.weaponName);
+                do
+                {
+                    yield return new WaitForEndOfFrame();
+                } while (rigController.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
+            }
+        }
+        #endregion
     }
 }

@@ -22,7 +22,7 @@ namespace KayosGames.RooftopDefender.Weapon
             if (activeWeapon)
             {
                 WeaponStats newWeapon = Instantiate(weaponPrefab);
-                activeWeapon.Equip(newWeapon, newWeapon.weaponLocalPosition);
+                activeWeapon.Equip(newWeapon);
             }
         }
     }

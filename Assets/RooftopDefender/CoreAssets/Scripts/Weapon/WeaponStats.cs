@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using KayosGames.RooftopDefender.Player.Weapon;
 
 namespace KayosGames.RooftopDefender.Weapon
 {
@@ -18,8 +19,8 @@ namespace KayosGames.RooftopDefender.Weapon
         public Transform bulletRaycastDestination;
 
         [Header("Components")]
+        public ActiveWeapon.WeaponSlot weaponSlot;
         public string weaponName;
-        public Vector3 weaponLocalPosition;
 
         
         Ray _bulletRay;
@@ -47,10 +48,6 @@ namespace KayosGames.RooftopDefender.Weapon
             }
         }
 
-        public void StopFiring()
-        {
-
-        }
     }
 
 }

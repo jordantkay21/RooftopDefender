@@ -5253,7 +5253,7 @@ Transform:
   m_GameObject: {fileID: 3931375241685616335}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0101, y: -0.0585, z: 0.0059}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5281,6 +5281,7 @@ MonoBehaviour:
   tracerEffect: {fileID: 3267068885857856768, guid: bac4360edbe71764e97ff75aa2f6bd86, type: 3}
   bulletRaycastOrigin: {fileID: 3982726945269112536}
   bulletRaycastDestination: {fileID: 0}
+  weaponSlot: 0
   weaponName: sniper
   weaponLocalPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &4526381997887953765

@@ -40,7 +40,13 @@ namespace KayosGames.RooftopDefender.Player.Inputs
         private void OnHolsterWeapon()
         {
             Debug.Log("X pressed");
-            activeWeapon.HolsterWeapon();
+            activeWeapon.ToggleActiveWeaponHolster();
+        }
+
+        private void OnSwitchWeapon()
+        {
+            Debug.Log("Q pressed");
+            activeWeapon.SwitchWeapon();
         }
     }
 }
