@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 205804}
+  - component: {fileID: 205805}
   m_Layer: 0
   m_Name: weapon_SecondaryHolster
   m_TagString: Untagged
@@ -151,9 +152,61 @@ Transform:
   m_LocalPosition: {x: 0.075669594, y: 1.2595364, z: -0.3464638}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2132445197}
   m_Father: {fileID: 185176791}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &205805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8935e03361a14ec4b8edc872f76bc822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Weight: 1
+  m_Data:
+    m_ConstrainedObject: {fileID: 205804}
+    m_SourceObjects:
+      m_Length: 1
+      m_Item0:
+        transform: {fileID: 20487956346911629}
+        weight: 1
+      m_Item1:
+        transform: {fileID: 0}
+        weight: 0
+      m_Item2:
+        transform: {fileID: 0}
+        weight: 0
+      m_Item3:
+        transform: {fileID: 0}
+        weight: 0
+      m_Item4:
+        transform: {fileID: 0}
+        weight: 0
+      m_Item5:
+        transform: {fileID: 0}
+        weight: 0
+      m_Item6:
+        transform: {fileID: 0}
+        weight: 0
+      m_Item7:
+        transform: {fileID: 0}
+        weight: 0
+    m_ConstrainedPositionAxes:
+      x: 1
+      y: 1
+      z: 1
+    m_ConstrainedRotationAxes:
+      x: 1
+      y: 1
+      z: 1
+    m_MaintainPositionOffset: 1
+    m_MaintainRotationOffset: 1
 --- !u!1 &9033558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,7 +1702,7 @@ MonoBehaviour:
         transform: {fileID: 232717086}
         weight: 0
       m_Item1:
-        transform: {fileID: 347934503}
+        transform: {fileID: 1011228300}
         weight: 1
       m_Item2:
         transform: {fileID: 0}
@@ -2487,6 +2540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 347934503}
+  - component: {fileID: 347934504}
   m_Layer: 0
   m_Name: weapon_PrimaryHolster
   m_TagString: Untagged
@@ -2506,9 +2560,61 @@ Transform:
   m_LocalPosition: {x: 0.17622702, y: 1.7406087, z: -0.10903069}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1011228300}
   m_Father: {fileID: 185176791}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &347934504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347934502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8935e03361a14ec4b8edc872f76bc822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Weight: 0
+  m_Data:
+    m_ConstrainedObject: {fileID: 347934503}
+    m_SourceObjects:
+      m_Length: 1
+      m_Item0:
+        transform: {fileID: 20602413709498033}
+        weight: 1
+      m_Item1:
+        transform: {fileID: 0}
+        weight: 0
+      m_Item2:
+        transform: {fileID: 0}
+        weight: 0
+      m_Item3:
+        transform: {fileID: 0}
+        weight: 0
+      m_Item4:
+        transform: {fileID: 0}
+        weight: 0
+      m_Item5:
+        transform: {fileID: 0}
+        weight: 0
+      m_Item6:
+        transform: {fileID: 0}
+        weight: 0
+      m_Item7:
+        transform: {fileID: 0}
+        weight: 0
+    m_ConstrainedPositionAxes:
+      x: 1
+      y: 1
+      z: 1
+    m_ConstrainedRotationAxes:
+      x: 1
+      y: 1
+      z: 1
+    m_MaintainPositionOffset: 1
+    m_MaintainRotationOffset: 1
 --- !u!1 &366042332
 GameObject:
   m_ObjectHideFlags: 0
@@ -2808,7 +2914,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417703367}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.46926108, y: 0.000000023975021, z: -0.000000012740414, w: 0.8830595}
+  m_LocalRotation: {x: 0.46926105, y: 0.00000002148797, z: -0.000000011418785, w: 0.8830595}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6570,7 +6676,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920955620}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.4903284, y: 0.000000027910716, z: -0.000000015702607, w: 0.8715378}
+  m_LocalRotation: {x: 0.49032837, y: -0.000000010216033, z: 0.0000000057475544, w: 0.8715378}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6875,8 +6981,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.49032834, y: 0.000000038275736, z: -0.00000002153398, w: 0.8715378}
-  m_LocalPosition: {x: 0.38, y: 4.8249984, z: -2.0858643}
+  m_LocalRotation: {x: 0.4903284, y: -0.000000027910723, z: 0.000000015702613, w: 0.8715378}
+  m_LocalPosition: {x: 0.38000003, y: 4.8249984, z: -2.0858643}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7173,6 +7279,37 @@ Transform:
   - {fileID: 366042333}
   - {fileID: 1867737569}
   m_Father: {fileID: 1077203433}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1011228299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1011228300}
+  m_Layer: 0
+  m_Name: PrimaryHolsterOffset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1011228300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011228299}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 347934503}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1063991273
 GameObject:
@@ -14548,7 +14685,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863929192}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.49032837, y: 0.00000001075872, z: -0.0000000060528693, w: 0.8715378}
+  m_LocalRotation: {x: 0.4903284, y: -0.000000027910717, z: 0.000000015702607, w: 0.8715378}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16124,7 +16261,7 @@ MonoBehaviour:
         transform: {fileID: 232717086}
         weight: 0
       m_Item1:
-        transform: {fileID: 205804}
+        transform: {fileID: 2132445197}
         weight: 1
       m_Item2:
         transform: {fileID: 0}
@@ -17429,6 +17566,37 @@ MonoBehaviour:
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
+--- !u!1 &2132445196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2132445197}
+  m_Layer: 0
+  m_Name: SecondaryHolsterOffset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2132445197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132445196}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.63474137, y: -0.06841332, z: -0.061361216, w: 0.7672404}
+  m_LocalPosition: {x: -0.3117594, y: 0.10579145, z: 1.2664158}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 205804}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2137122559
 GameObject:
   m_ObjectHideFlags: 0
@@ -19532,8 +19700,10 @@ MonoBehaviour:
   rigController: {fileID: 1248776632}
   handIk: {fileID: 1604499131}
   _equippedWeapons: []
+  _equippedWeaponsArray: []
   _activeWeaponIndex: 0
   crosshairTarget: {fileID: 1891014242}
+  isHolstered: 0
 --- !u!137 &121104870882893403
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

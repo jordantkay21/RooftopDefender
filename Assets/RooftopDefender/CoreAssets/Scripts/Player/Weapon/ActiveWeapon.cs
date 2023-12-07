@@ -22,27 +22,33 @@ namespace KayosGames.RooftopDefender.Player.Weapon
 
         [Header("Components")]
         public UnityEngine.Animations.Rigging.Rig handIk;
+
         [SerializeField]
-        private WeaponStats[] _equippedWeapons;
+        private List<WeaponStats> _equippedWeapons = new List<WeaponStats>();
+        [SerializeField]
+        private WeaponStats[] _equippedWeaponsArray;
         [SerializeField]
         private int _activeWeaponIndex;
 
         [Header("Misc.")]
         public Transform crosshairTarget;
+        [SerializeField]
+        private bool isHolstered = false;
+        
 
         // Start is called before the first frame update
         void Start()
         {
             WeaponStats existingWeapon = GetComponentInChildren<WeaponStats>();
 
-            _equippedWeapons = new WeaponStats[weaponSlots.Length];
+            _equippedWeaponsArray = new WeaponStats[weaponSlots.Length];
         }
 
         #region Input Events
         public void FireEvent()
         {
             WeaponStats weapon = GetWeapon(_activeWeaponIndex);
-            if (weapon)
+            if (weapon && !isHolstered)
             {
                 weapon.FireBullet();
             }
@@ -52,10 +58,10 @@ namespace KayosGames.RooftopDefender.Player.Weapon
 
         WeaponStats GetWeapon(int index)
         {
-            if (index < 0 || index >= _equippedWeapons.Length)
+            if (index < 0 || index >= _equippedWeaponsArray.Length)
                 return null;
 
-            return _equippedWeapons[index];
+            return _equippedWeaponsArray[index];
         }
 
         public void Equip(WeaponStats newWeapon)
@@ -71,7 +77,7 @@ namespace KayosGames.RooftopDefender.Player.Weapon
             weapon.bulletRaycastDestination = crosshairTarget;
             weapon.transform.SetParent(weaponSlots[weaponSlotIndex], false);
 
-            _equippedWeapons[weaponSlotIndex] = weapon;
+            _equippedWeaponsArray[weaponSlotIndex] = weapon;
 
             SetActiveWeapon(newWeapon.weaponSlot);
         }
@@ -88,19 +94,20 @@ namespace KayosGames.RooftopDefender.Player.Weapon
         {
             WeaponStats weapon = GetWeapon(_activeWeaponIndex);
 
-            if (_equippedWeapons[_activeWeaponIndex] != null)
+            if (_equippedWeaponsArray[_activeWeaponIndex] != null)
             {
                 if (weapon.weaponSlot == WeaponSlot.Primary)
-                    SetActiveWeapon(WeaponSlot.Secondary);
+                {
+                    if (_equippedWeaponsArray[(int)WeaponSlot.Secondary] != null)
+                        SetActiveWeapon(WeaponSlot.Secondary);
+
+                }
                 else if (weapon.weaponSlot == WeaponSlot.Secondary)
-                    SetActiveWeapon(WeaponSlot.Primary);
-                else
-                    return;
-            }
-            else
-                return;
-            // Stop Switch Weapon from switching the _activeWeaponIndex unless there is a weapon to switch too
-            
+                {
+                    if (_equippedWeaponsArray[(int)WeaponSlot.Primary] != null)
+                        SetActiveWeapon(WeaponSlot.Primary);
+                }
+            }       
         }
         public void ToggleActiveWeaponHolster()
         {
@@ -131,7 +138,10 @@ namespace KayosGames.RooftopDefender.Player.Weapon
                 {
                     yield return new WaitForEndOfFrame();
                 } while (rigController.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
+
+                isHolstered = true;
             }
+            
         }
 
         IEnumerator ActivateWeapon(int index)
@@ -145,6 +155,8 @@ namespace KayosGames.RooftopDefender.Player.Weapon
                 {
                     yield return new WaitForEndOfFrame();
                 } while (rigController.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
+                
+                isHolstered = false;
             }
         }
         #endregion

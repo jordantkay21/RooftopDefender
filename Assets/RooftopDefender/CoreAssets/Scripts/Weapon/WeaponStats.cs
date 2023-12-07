@@ -45,6 +45,12 @@ namespace KayosGames.RooftopDefender.Weapon
                 hitEffect.Emit(1);
 
                 tracer.transform.position = _bulletHitInfo.point;
+
+                Rigidbody rb2d = _bulletHitInfo.collider.GetComponent<Rigidbody>();
+                if (rb2d)
+                    rb2d.AddForceAtPosition(_bulletRay.direction * 20, _bulletHitInfo.point, ForceMode.Impulse);
+
+                
             }
         }
 
